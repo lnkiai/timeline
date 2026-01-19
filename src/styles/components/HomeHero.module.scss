@@ -1,32 +1,184 @@
 .container {
   padding: 4rem 0 5rem;
 }
+
+.profileHeader {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.iconWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+
+  img {
+    width: 64px;
+    height: 64px;
+    object-fit: cover;
+    transition: opacity 0.15s ease;
+    border-radius: 0;
+  }
+
+  &.editable {
+    cursor: pointer;
+
+    &:hover img {
+      opacity: 0.5;
+    }
+
+    &:hover .iconOverlay {
+      opacity: 1;
+    }
+  }
+}
+
+.iconOverlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 0;
+  color: white;
+  opacity: 0;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+
 .title {
-  margin-top: 3.3rem;
-  font-size: 2.7rem;
+  margin: 0;
+  font-size: 2.5rem;
   line-height: 1.2;
-  font-family: var(--font-family-alphabet);
+  font-weight: 700;
+  font-family: var(--font-family-base);
+
+  &.editable {
+    cursor: pointer;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.25rem 0.5rem;
+    margin-left: -0.5rem;
+    border-radius: 0.5rem;
+    transition: background 0.15s ease;
+
+    &:hover {
+      background: var(--c-base-background-lighter);
+    }
+  }
+}
+
+.descriptionWrapper {
+  &.editable {
+    cursor: pointer;
+    position: relative;
+    display: inline-block;
+    padding: 0.5rem;
+    margin-left: -0.5rem;
+    border-radius: 0.5rem;
+    transition: background 0.15s ease;
+
+    &:hover {
+      background: var(--c-base-background-lighter);
+    }
+  }
 }
 
 .description {
-  margin-top: 2.3rem;
+  margin: 0;
   font-size: 1.1rem;
   line-height: 1.8;
   color: var(--c-gray);
-  font-family: var(--font-family-alphabet);
-  a {
-    display: inline-flex;
-    align-items: center;
-    white-space: nowrap;
-    text-decoration: underline;
-    text-underline-offset: 4px;
-    text-decoration-color: var(--c-border);
-    transition: color 0.2s;
-    &:hover {
-      color: var(--c-base-text);
-    }
+  font-family: var(--font-family-base);
+  white-space: pre-wrap;
+}
+
+.editIcon {
+  color: var(--c-gray);
+  opacity: 0;
+  transition: opacity 0.15s ease;
+
+  .editable:hover & {
+    opacity: 1;
   }
-  svg {
-    margin: 0 1px 0 5px;
+}
+
+.editField {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.editInput {
+  flex: 1;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--c-border);
+  border-radius: 0.5rem;
+  background: var(--c-base-background-lighter);
+  color: var(--c-base-text);
+  font-family: var(--font-family-base);
+  font-size: 2rem;
+  font-weight: 700;
+  outline: none;
+
+  &:focus {
+    border-color: var(--c-accent-primary);
+  }
+}
+
+.editTextarea {
+  flex: 1;
+  padding: 0.75rem;
+  border: 1px solid var(--c-border);
+  border-radius: 0.5rem;
+  background: var(--c-base-background-lighter);
+  color: var(--c-base-text);
+  font-family: var(--font-family-base);
+  font-size: 1.1rem;
+  line-height: 1.6;
+  outline: none;
+  resize: none;
+
+  &:focus {
+    border-color: var(--c-accent-primary);
+  }
+}
+
+.saveBtn,
+.cancelBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  flex-shrink: 0;
+}
+
+.saveBtn {
+  background: var(--c-accent-primary);
+  color: white;
+
+  &:hover {
+    opacity: 0.9;
+  }
+}
+
+.cancelBtn {
+  background: var(--c-base-background-lighter);
+  color: var(--c-gray);
+
+  &:hover {
+    color: var(--c-base-text);
   }
 }

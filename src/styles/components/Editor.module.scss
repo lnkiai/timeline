@@ -1,0 +1,833 @@
+// Editor Styles - Clean floating input bar
+
+// Input Container (floating bottom)
+.inputContainer {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    left: 1.5rem;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    pointer-events: none;
+
+    >* {
+        pointer-events: auto;
+    }
+}
+
+// Input Card
+.inputCard {
+    background: var(--c-base-background-card);
+    border: 1px solid var(--c-border);
+    max-width: 560px;
+    width: 100%;
+    transition: border-color 0.15s ease;
+
+    &:not(.compact) {
+        border-radius: 1.25rem;
+        padding: 0.875rem;
+
+        &:focus-within {
+            border-color: var(--c-accent-primary);
+        }
+    }
+
+    &.compact {
+        border-radius: 2rem;
+        cursor: pointer;
+        padding: 0.75rem 1.25rem;
+        max-width: fit-content;
+
+        &:hover {
+            border-color: var(--c-accent-primary);
+        }
+    }
+}
+
+// Compact Content
+.compactContent {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    color: var(--c-gray);
+    font-size: 0.9rem;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.compactIcon {
+    color: var(--c-accent-primary);
+}
+
+// Hidden
+.hidden {
+    height: 0;
+    opacity: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+// Expanded Content
+.expandedContent {
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+}
+
+// Expanded Fields
+.expandedField {
+    overflow: visible;
+    position: relative;
+    z-index: 10;
+}
+
+.fieldRow {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.625rem;
+    background: var(--c-base-background-lighter);
+    border-radius: 0.625rem;
+}
+
+.fieldIcon {
+    color: var(--c-gray);
+    flex-shrink: 0;
+}
+
+.fieldInput {
+    flex: 1;
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: var(--c-base-text);
+    font-family: var(--font-family-base);
+    font-size: 0.875rem;
+    outline: none;
+
+    &::placeholder {
+        color: var(--c-gray);
+    }
+
+    &::-webkit-scrollbar {
+        width: 4px;
+        height: 4px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: var(--c-border);
+        border-radius: 2px;
+    }
+}
+
+.closeField {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.25rem;
+    border: none;
+    border-radius: 0.25rem;
+    background: transparent;
+    color: var(--c-gray);
+    cursor: pointer;
+    flex-shrink: 0;
+
+    &:hover {
+        color: var(--c-base-text);
+    }
+}
+
+// Date Group
+.dateGroup {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    flex: 1;
+}
+
+.sep {
+    color: var(--c-gray);
+    font-size: 0.8rem;
+}
+
+.dayInput {
+    width: 36px;
+    padding: 0.25rem;
+    border: 1px solid var(--c-border);
+    border-radius: 0.375rem;
+    background: var(--c-base-background);
+    color: var(--c-base-text);
+    font-family: var(--font-family-base);
+    font-size: 0.8rem;
+    text-align: center;
+    outline: none;
+    appearance: textfield;
+    -moz-appearance: textfield;
+
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+        appearance: none;
+        -webkit-appearance: none;
+    }
+
+    &:focus {
+        border-color: var(--c-accent-primary);
+    }
+}
+
+// Select
+.selectWrapper {
+    position: relative;
+}
+
+.selectBtn {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.25rem 0.375rem;
+    border: 1px solid var(--c-border);
+    border-radius: 0.375rem;
+    background: var(--c-base-background);
+    color: var(--c-base-text);
+    font-family: var(--font-family-base);
+    font-size: 0.8rem;
+    cursor: pointer;
+
+    &:hover {
+        border-color: var(--c-accent-primary);
+    }
+}
+
+.dropdown {
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    z-index: 9999;
+    min-width: 70px;
+    max-height: 160px;
+    overflow-y: auto;
+    margin-bottom: 0.25rem;
+    padding: 0.25rem;
+    border: 1px solid var(--c-border);
+    border-radius: 0.5rem;
+    background: var(--c-base-background-card);
+
+    &::-webkit-scrollbar {
+        width: 3px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: var(--c-border);
+        border-radius: 2px;
+    }
+
+    button {
+        display: block;
+        width: 100%;
+        padding: 0.375rem 0.5rem;
+        border: none;
+        border-radius: 0.25rem;
+        background: transparent;
+        color: var(--c-base-text);
+        font-family: var(--font-family-base);
+        font-size: 0.8rem;
+        text-align: left;
+        cursor: pointer;
+
+        &:hover {
+            background: var(--c-base-background-lighter);
+        }
+
+        &.selected {
+            color: var(--c-accent-primary);
+        }
+    }
+
+    .clearBtn {
+        color: var(--c-gray);
+        font-size: 0.7rem;
+        text-align: center;
+        border-top: 1px solid var(--c-border);
+        margin-top: 0.25rem;
+        padding-top: 0.375rem;
+
+        &:hover {
+            color: var(--c-accent-danger);
+        }
+    }
+}
+
+.dropdownUp {
+    top: auto;
+    bottom: 100%;
+    margin-top: 0;
+    margin-bottom: 0.25rem;
+}
+
+// Description Wrapper
+.descWrapper {
+    display: flex;
+    gap: 0.5rem;
+    padding: 0.5rem 0.625rem;
+    background: var(--c-base-background-lighter);
+    border-radius: 0.625rem;
+}
+
+.descInput {
+    flex: 1;
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: var(--c-base-text);
+    font-family: var(--font-family-base);
+    font-size: 0.875rem;
+    resize: none;
+    outline: none;
+
+    &::placeholder {
+        color: var(--c-gray);
+    }
+}
+
+// Image Wrapper
+.imageWrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.625rem;
+    background: var(--c-base-background-lighter);
+    border-radius: 0.625rem;
+}
+
+.uploadBtn {
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.5rem 0.75rem;
+    border: 1px dashed var(--c-border);
+    border-radius: 0.5rem;
+    background: transparent;
+    color: var(--c-gray);
+    font-family: var(--font-family-base);
+    font-size: 0.8rem;
+    cursor: pointer;
+
+    &:hover {
+        border-color: var(--c-accent-primary);
+        color: var(--c-accent-primary);
+    }
+}
+
+.imagePreview {
+    position: relative;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    border: 1px solid var(--c-border);
+
+    img {
+        display: block;
+        max-width: 180px;
+        max-height: 60px;
+        object-fit: cover;
+    }
+
+    button {
+        position: absolute;
+        top: 0.25rem;
+        right: 0.25rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.25rem;
+        border: none;
+        border-radius: 0.25rem;
+        background: var(--c-base-background);
+        color: var(--c-gray);
+        cursor: pointer;
+
+        &:hover {
+            color: var(--c-accent-danger);
+        }
+    }
+}
+
+// Title Row (no border)
+.titleRow {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+}
+
+// Emoji
+.emojiWrapper {
+    position: relative;
+}
+
+.emojiBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border: 1px solid var(--c-border);
+    border-radius: 0.5rem;
+    background: var(--c-base-background-lighter);
+    font-size: 1.125rem;
+    cursor: pointer;
+    transition: border-color 0.15s ease;
+
+    &:hover {
+        border-color: var(--c-accent-primary);
+    }
+}
+
+.emojiImg {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+}
+
+.emojiGrid {
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    z-index: 50;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 0.25rem;
+    margin-bottom: 0.5rem;
+    padding: 0.5rem;
+    border: 1px solid var(--c-border);
+    border-radius: 0.75rem;
+    background: var(--c-base-background-card);
+
+    button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 32px;
+        height: 32px;
+        border: none;
+        border-radius: 0.375rem;
+        background: transparent;
+        font-size: 1.1rem;
+        cursor: pointer;
+
+        &:hover {
+            background: var(--c-base-background-lighter);
+        }
+
+        &.selected {
+            background: var(--c-base-background-lighter);
+            outline: 2px solid var(--c-accent-primary);
+            outline-offset: -2px;
+        }
+    }
+}
+
+// Title Input
+.titleInput {
+    flex: 1;
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: var(--c-base-text);
+    font-family: var(--font-family-base);
+    font-size: 0.95rem;
+    font-weight: 500;
+    outline: none;
+
+    &::placeholder {
+        color: var(--c-gray);
+    }
+
+    // Subtle scrollbar for overflow
+    &::-webkit-scrollbar {
+        width: 4px;
+        height: 4px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: var(--c-border);
+        border-radius: 2px;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+        background: var(--c-gray);
+    }
+}
+
+// Description Input (textarea)
+.descriptionInput {
+    flex: 1;
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: var(--c-base-text);
+    font-family: var(--font-family-base);
+    font-size: 0.9rem;
+    outline: none;
+    resize: none;
+    line-height: 1.5;
+
+    &::placeholder {
+        color: var(--c-gray);
+    }
+
+    &::-webkit-scrollbar {
+        width: 4px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: var(--c-border);
+        border-radius: 2px;
+    }
+}
+
+// Bottom Bar (no border)
+.bottomBar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 0.375rem;
+}
+
+.leftControls {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+// Animated Mode Toggle Group
+.modeToggleGroup {
+    display: flex;
+    align-items: center;
+    gap: 0.125rem;
+    padding: 0.25rem;
+    border-radius: 0.625rem;
+    background: var(--c-base-background-lighter);
+}
+
+.modeBtn {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border: none;
+    border-radius: 0.5rem;
+    background: transparent;
+    color: var(--c-gray);
+    cursor: pointer;
+    transition: color 0.15s ease;
+    z-index: 1;
+
+    &:hover {
+        color: var(--c-base-text);
+    }
+
+    &.active {
+        color: var(--c-accent-primary);
+    }
+
+    &.hasValue:not(.active) .modeBtnIcon::after {
+        content: '';
+        position: absolute;
+        top: -2px;
+        right: -2px;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--c-accent-primary);
+    }
+}
+
+.modeBtnBg {
+    position: absolute;
+    inset: 0;
+    border-radius: 0.5rem;
+    background: var(--c-base-background);
+    z-index: -1;
+}
+
+.modeBtnIcon {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+// Icon Buttons
+.iconBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border: none;
+    border-radius: 0.5rem;
+    background: transparent;
+    color: var(--c-gray);
+    cursor: pointer;
+    transition: all 0.15s ease;
+    position: relative;
+
+    &:hover {
+        color: var(--c-base-text);
+        background: var(--c-base-background-lighter);
+    }
+
+    &.active {
+        color: var(--c-accent-primary);
+        background: var(--c-base-background-lighter);
+    }
+
+    &.hasValue:not(.active)::after {
+        content: '';
+        position: absolute;
+        top: 4px;
+        right: 4px;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--c-accent-primary);
+    }
+}
+
+.separator {
+    width: 1px;
+    height: 20px;
+    background: var(--c-border);
+    margin: 0 0.375rem;
+}
+
+// Action Button
+.actionBtn {
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.5rem 0.625rem;
+    border: 1px solid var(--c-border);
+    border-radius: 0.5rem;
+    background: var(--c-base-background-lighter);
+    color: var(--c-gray);
+    font-family: var(--font-family-base);
+    font-size: 0.8rem;
+    font-weight: 500;
+    cursor: pointer;
+
+    &:hover {
+        border-color: var(--c-accent-primary);
+        color: var(--c-accent-primary);
+    }
+
+    .rotated {
+        transform: rotate(180deg);
+    }
+}
+
+// Submit Button
+.submitBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border: none;
+    border-radius: 50%;
+    background: var(--c-base-text);
+    color: var(--c-base-background);
+    cursor: pointer;
+
+    &:disabled {
+        opacity: 0.25;
+        cursor: not-allowed;
+    }
+}
+
+// Cancel Button
+.cancelBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border: 1px solid var(--c-border);
+    border-radius: 50%;
+    background: transparent;
+    color: var(--c-gray);
+    cursor: pointer;
+    transition: all 0.15s ease;
+
+    &:hover {
+        background: var(--c-base-background-lighter);
+        color: var(--c-accent-danger);
+        border-color: var(--c-accent-danger);
+    }
+}
+
+// Right Controls
+.rightControls {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+// AI Enhance Button
+.enhanceBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border: 1px solid var(--c-border);
+    border-radius: 50%;
+    background: transparent;
+    color: var(--c-gray);
+    cursor: pointer;
+    transition: all 0.15s ease;
+
+    &:hover:not(:disabled) {
+        border-color: var(--c-accent-primary);
+        color: var(--c-accent-primary);
+    }
+
+    &:disabled {
+        opacity: 0.3;
+        cursor: not-allowed;
+    }
+
+    &.loading {
+        border-color: var(--c-accent-primary);
+        color: var(--c-accent-primary);
+    }
+}
+
+.spinner {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+// Delete button for timeline items
+.deleteItemButton {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.375rem;
+    border: none;
+    border-radius: 0.25rem;
+    background: transparent;
+    color: var(--c-gray);
+    cursor: pointer;
+    opacity: 0;
+    transition: all 0.15s ease;
+
+    &:hover {
+        background: var(--c-base-background-lighter);
+        color: var(--c-accent-danger);
+    }
+}
+
+.itemEditing {
+    position: relative;
+
+    &:hover .deleteItemButton,
+    &:hover .editItemButton {
+        opacity: 1;
+    }
+}
+
+// Edit Item Button
+.editItemButton {
+    position: absolute;
+    top: 0;
+    right: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.375rem;
+    border: none;
+    border-radius: 0.25rem;
+    background: transparent;
+    color: var(--c-gray);
+    cursor: pointer;
+    opacity: 0;
+    transition: all 0.15s ease;
+
+    &:hover {
+        background: var(--c-base-background-lighter);
+        color: var(--c-accent-primary);
+    }
+}
+
+// Edit Toggle
+.editToggle {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 100;
+}
+
+.toggleBtn {
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding: 0.25rem;
+    border: 1px solid var(--c-border);
+    border-radius: 0.75rem;
+    background: var(--c-base-background-card);
+    cursor: pointer;
+    gap: 0;
+}
+
+.toggleSlider {
+    position: absolute;
+    width: 50%;
+    height: calc(100% - 0.5rem);
+    background: var(--c-base-background-lighter);
+    border-radius: 0.5rem;
+    left: 0.25rem;
+    z-index: 0;
+}
+
+.toggleOption {
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--c-gray);
+    z-index: 1;
+    transition: color 0.15s ease;
+
+    &.active {
+        color: var(--c-base-text);
+    }
+}

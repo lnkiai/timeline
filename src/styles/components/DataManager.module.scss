@@ -1,0 +1,28 @@
+.container {
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    display: flex;
+    gap: 0.5rem;
+    z-index: 100;
+}
+
+.button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border: 1px solid var(--c-border);
+    border-radius: 0.5rem;
+    background: var(--c-base-background-card);
+    color: var(--c-gray);
+    cursor: pointer;
+    transition: all 0.15s ease;
+
+    &:hover {
+        background: var(--c-base-background-lighter);
+        color: var(--c-base-text);
+        border-color: var(--c-base-text);
+    }
+}

@@ -1,3 +1,7 @@
+.container {
+  position: relative;
+}
+
 .year {
   position: sticky;
   top: 6px;
@@ -10,31 +14,53 @@
   border-radius: 2.5em;
   background: var(--c-base-background-lighter);
 }
+
 .itemsContainer {
   margin: 1rem 0;
   margin-left: 2px;
   padding: 1rem 0;
   border-left: solid 2px var(--c-border);
 }
+
 .itemIcon {
   position: absolute;
   display: inline-flex;
-  left: -6px;
-  top: 4px;
-  width: 10px;
-  height: 10px;
+  align-items: center;
+  justify-content: center;
+  left: -16px;
+  top: -2px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   border: solid 2px var(--c-border);
   background: var(--c-base-background);
+  transition: all 0.2s ease;
+  overflow: hidden;
+}
+
+.itemEmoji {
+  font-size: 0.9rem;
+  line-height: 1;
 }
 
 .itemLink {
   display: block;
   position: relative;
-  padding-left: 20px;
+  padding-left: 24px;
+
   &:not(:first-child) {
     margin-top: 2.2rem;
   }
+
+  &:hover .itemIcon {
+    border-color: var(--c-accent-primary);
+  }
+}
+
+.itemContent {
+  display: block;
+  color: inherit;
+  text-decoration: none;
 }
 
 .itemTitle {
@@ -42,6 +68,7 @@
   font-size: 1.15rem;
   line-height: 1.6;
   letter-spacing: 0.01em;
+
   &:hover {
     text-decoration: underline;
     text-underline-offset: 4px;
@@ -56,9 +83,10 @@
   font-size: 0.9rem;
   line-height: 1.2;
 }
-.itemFavicon {
-  margin-right: 7px;
-  border-radius: 4px;
+
+.itemAction {
+  font-weight: 500;
+  color: var(--c-accent-primary);
 }
 
 .itemDate {
@@ -66,5 +94,31 @@
     content: '/';
     margin: 0 5px;
     color: var(--c-border);
+  }
+}
+
+.itemDescription {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--c-gray);
+  line-height: 1.6;
+}
+
+.itemImage {
+  margin-top: 0.875rem;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  border: 1px solid var(--c-border);
+
+  img {
+    display: block;
+    width: 100%;
+    max-height: 280px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: scale(1.01);
+    }
   }
 }
