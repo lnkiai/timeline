@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import Head from 'next/head';
-import jsonItems from '../../.items.json';
+import jsonItems from '../../items.json';
 import siteConfig from '../../site.config';
 import { ContentWrapper } from '../components/ContentWrapper';
 import { HomeHero } from '../components/HomeHero';
